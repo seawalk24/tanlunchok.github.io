@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const progressBar = document.getElementById('progress-bar');
             const mainContent = document.getElementById('main-content');
             const loadingScreen = document.getElementById('loading-screen');
+            const loadingAnimation = document.getElementById('loading-animation');
             const minimumLoadingTime = 2000; // Minimum loading time in milliseconds (2 seconds)
             const startTime = Date.now();
 
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (progress < 100) {
                     requestAnimationFrame(updateProgress);
                 } else {
+                    loadingAnimation.style.animation = 'none'; // Stop animation
                     setTimeout(() => {
                         loadingScreen.style.opacity = '0'; // Fade out animation (optional)
                         setTimeout(() => {

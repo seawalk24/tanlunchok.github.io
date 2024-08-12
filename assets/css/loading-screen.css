@@ -37,3 +37,15 @@ body, html {
     border-radius: 10px;
     transition: width 0.3s ease;
 }
+
+@keyframes spriteAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: -2000px 0; } /* Adjust based on your spritesheet width */
+}
+
+#loading-animation {
+    width: 100px; /* Adjust based on your sprite size */
+    height: 100px; /* Adjust based on your sprite size */
+    background-image: url('spritesheet.png'); /* Path to your spritesheet */
+    animation: spriteAnimation 1s steps(20) infinite; /* Adjust duration and steps */
+}
