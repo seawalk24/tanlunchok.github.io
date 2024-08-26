@@ -16,6 +16,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     width: 100%;
+    margin-top: auto;
 }
 
 h1 {
@@ -24,7 +25,7 @@ h1 {
 
 .form-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-bottom: 10px;
 }
 
@@ -34,7 +35,12 @@ h1 {
     font-size: 0.8rem;
     text-align: left;
 }
-
+.form-group.building {
+    justify-content: space-around;
+}
+.form-group.building label {
+    width: 20%;
+}
 .form-group input {
     width: 25%;
     text-align: center;
