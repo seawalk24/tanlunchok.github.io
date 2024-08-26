@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Cost Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 60px;
+            text-align: right;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gem Cost Calculator</h1>
+    <form id="calculator-form">
+        <label>Wood: <input type="number" id="wood" value="0" min="0"></label>
+        <label>Iron: <input type="number" id="iron" value="0" min="0"></label>
+        <label>Steel: <input type="number" id="steel" value="0" min="0"></label>
+        <label>Crystone: <input type="number" id="crystone" value="0" min="0"></label>
+        <label>Weapon Crate: <input type="number" id="weapon-crate" value="0" min="0"></label>
+        <label>Med Crate: <input type="number" id="med-crate" value="0" min="0"></label>
+        <label>Food Crate: <input type="number" id="food-crate" value="0" min="0"></label>
+        <label>ID Card: <input type="number" id="id-card" value="0" min="0"></label>
+        <label>Precision Gear: <input type="number" id="precision-gear" value="0" min="0"></label>
+        <label>Integrated Chip: <input type="number" id="integrated-chip" value="0" min="0"></label>
+        <label>Energy Core: <input type="number" id="energy-core" value="0" min="0"></label>
+
+        <button type="button" onclick="calculateTotal()">Calculate</button>
+    </form>
+
+    <div class="result">
+        <p>Total Gem Cost: <span id="total-gem-cost">0</span></p>
+    </div>
+
+    <script>
+        // Define material costs
+        const materialCosts = {
+            wood: 12,
+            iron: 4,
+            steel: 12,
+            crystone: 3,
+            weaponCrate: 6,
+            medCrate: 12,
+            foodCrate: 4,
+            idCard: 3,
+            precisionGear: 6,
+            integratedChip: 1,
+            energyCore: 0.5
+        };
+
+        // Function to calculate total Gem cost
+        function calculateTotal() {
+            let totalGemCost = 0;
+            
+            // Loop through each material and calculate cost
+            for (const [key, cost] of Object.entries(materialCosts)) {
+                const quantity = parseFloat(document.getElementById(key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()).value) || 0;
+                const hourGlassCost = 1 / cost;
+                const gemCost = 80 * hourGlassCost;
+                totalGemCost += gemCost * quantity;
+            }
+
+            // Display the total cost
+            document.getElementById('total-gem-cost').textContent = totalGemCost.toFixed(2);
+        }
+    </script>
+</body>
+</html>
