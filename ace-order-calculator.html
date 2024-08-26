@@ -7,75 +7,220 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        label {
-            display: block;
-            margin: 10px 0 5px;
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 50%;
         }
-        input {
-            width: 60px;
-            text-align: right;
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            width: 50%;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: left;
+        }
+        .form-group input {
+            width: 25%;
+            text-align: center;
+            -moz-appearance: textfield; /* Firefox */
+            appearance: textfield; /* Chrome, Safari */
+        }
+        .form-group input::-webkit-inner-spin-button,
+        .form-group input::-webkit-outer-spin-button {
+            -webkit-appearance: none; /* Chrome, Safari */
+            margin: 0;
         }
         .result {
             margin-top: 20px;
+            font-size: 18px;
             font-weight: bold;
+            text-align: center;
         }
+        .resetBtn {
+            text-align: center; /* Center-aligns the button */
+            margin-top: 20px; /* Adds some space above the button */
+        }
+
+        .resetBtn button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .resetBtn button:hover {
+            background-color: #0056b3;
+        }
+        .icon {
+            width: 24px; /* Adjust the size as needed */
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
     </style>
 </head>
 <body>
-    <h1>Gem Cost Calculator</h1>
-    <form id="calculator-form">
-        <label>Wood: <input type="number" id="wood" value="0" min="0"></label>
-        <label>Iron: <input type="number" id="iron" value="0" min="0"></label>
-        <label>Steel: <input type="number" id="steel" value="0" min="0"></label>
-        <label>Crystone: <input type="number" id="crystone" value="0" min="0"></label>
-        <label>Weapon Crate: <input type="number" id="weapon-crate" value="0" min="0"></label>
-        <label>Med Crate: <input type="number" id="med-crate" value="0" min="0"></label>
-        <label>Food Crate: <input type="number" id="food-crate" value="0" min="0"></label>
-        <label>ID Card: <input type="number" id="id-card" value="0" min="0"></label>
-        <label>Precision Gear: <input type="number" id="precision-gear" value="0" min="0"></label>
-        <label>Integrated Chip: <input type="number" id="integrated-chip" value="0" min="0"></label>
-        <label>Energy Core: <input type="number" id="energy-core" value="0" min="0"></label>
-
-        <button type="button" onclick="calculateTotal()">Calculate</button>
-    </form>
-
-    <div class="result">
-        <p>Total Gem Cost: <span id="total-gem-cost">0</span></p>
+    <div class="container">
+        <h1>Gem Cost Calculator</h1>
+        <div class="form-group">
+            <label for="wood">
+                <img src="images\aceCal\wood.png" alt="Wood Icon" class="icon">
+                Wood
+            </label>
+            <input type="number" id="wood" value="0">
+        </div>
+        <div class="form-group">
+            <label for="iron">
+                <img src="images\aceCal\iron.png" alt=" Icon" class="icon">
+                Iron
+            </label>
+            <input type="number" id="iron" value="0">
+        </div>
+        <div class="form-group">
+            <label for="steel">
+                <img src="images\aceCal\steel.png" alt=" Icon" class="icon">
+                Steel
+            </label>
+            <input type="number" id="steel" value="0">
+        </div>
+        <div class="form-group">
+            <label for="crystone">
+                <img src="images\aceCal\crys.png" alt=" Icon" class="icon">
+                Crystone
+            </label>
+            <input type="number" id="crystone" value="0">
+        </div>
+        <div class="form-group">
+            <label for="weapon-crate">
+                <img src="images\aceCal\weap.png" alt=" Icon" class="icon">
+                Weapon Crate
+            </label>
+            <input type="number" id="weapon-crate" value="0">
+        </div>
+        <div class="form-group">
+            <label for="med-crate">
+                <img src="images\aceCal\med.png" alt=" Icon" class="icon">
+                Med Crate
+            </label>
+            <input type="number" id="med-crate" value="0">
+        </div>
+        <div class="form-group">
+            <label for="food-crate">
+                <img src="images\aceCal\food.png" alt=" Icon" class="icon">
+                Food Crate
+            </label>
+            <input type="number" id="food-crate" value="0">
+        </div>
+        <div class="form-group">
+            <label for="id-card">
+                <img src="images\aceCal\id.png" alt=" Icon" class="icon">
+                ID Card
+            </label>
+            <input type="number" id="id-card" value="0">
+        </div>
+        <div class="form-group">
+            <label for="precision-gear">
+                <img src="images\aceCal\gear.png" alt=" Icon" class="icon">
+                Precision Gear
+            </label>
+            <input type="number" id="precision-gear" value="0">
+        </div>
+        <div class="form-group">
+            <label for="integrated-chip">
+                <img src="images\aceCal\chip.png" alt=" Icon" class="icon">
+                Integrated Chip
+            </label>
+            <input type="number" id="integrated-chip" value="0">
+        </div>
+        <div class="form-group">
+            <label for="energy-core">
+                <img src="images\aceCal\core.png" alt=" Icon" class="icon">
+                Energy Core
+            </label>
+            <input type="number" id="energy-core" value="0">
+        </div>
+        <div class="result">
+            Total Gem Needed: <span id="total-cost">0</span>
+        </div>
+        <div class="resetBtn">
+            <button onclick="resetForm()">Reset</button>
+        </div>
     </div>
-
     <script>
-        // Define material costs
-        const materialCosts = {
-            wood: 12,
-            iron: 4,
-            steel: 12,
-            crystone: 3,
-            weaponCrate: 6,
-            medCrate: 12,
-            foodCrate: 4,
-            idCard: 3,
-            precisionGear: 6,
-            integratedChip: 1,
-            energyCore: 0.5
-        };
-
-        // Function to calculate total Gem cost
-        function calculateTotal() {
-            let totalGemCost = 0;
+        function calculateTotalCost() {
+            const costs = {
+                wood: 12,
+                iron: 4,
+                steel: 12,
+                crystone: 3,
+                weaponCrate: 6,
+                medCrate: 12,
+                foodCrate: 4,
+                idCard: 3,
+                precisionGear: 6,
+                integratedChip: 1,
+                energyCore: 0.5
+            };
             
-            // Loop through each material and calculate cost
-            for (const [key, cost] of Object.entries(materialCosts)) {
-                const quantity = parseFloat(document.getElementById(key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()).value) || 0;
-                const hourGlassCost = 1 / cost;
+            const values = {
+                wood: parseFloat(document.getElementById('wood').value) || 0,
+                iron: parseFloat(document.getElementById('iron').value) || 0,
+                steel: parseFloat(document.getElementById('steel').value) || 0,
+                crystone: parseFloat(document.getElementById('crystone').value) || 0,
+                weaponCrate: parseFloat(document.getElementById('weapon-crate').value) || 0,
+                medCrate: parseFloat(document.getElementById('med-crate').value) || 0,
+                foodCrate: parseFloat(document.getElementById('food-crate').value) || 0,
+                idCard: parseFloat(document.getElementById('id-card').value) || 0,
+                precisionGear: parseFloat(document.getElementById('precision-gear').value) || 0,
+                integratedChip: parseFloat(document.getElementById('integrated-chip').value) || 0,
+                energyCore: parseFloat(document.getElementById('energy-core').value) || 0
+            };
+            
+            let totalCost = 0;
+            
+            for (let key in costs) {
+                const costPerUnit = costs[key];
+                const quantity = values[key];
+                const hourGlassCost = 1 / costPerUnit;
                 const gemCost = 80 * hourGlassCost;
-                totalGemCost += gemCost * quantity;
+                totalCost += gemCost * quantity;
             }
-
-            // Display the total cost
-            document.getElementById('total-gem-cost').textContent = totalGemCost.toFixed(2);
+            
+            document.getElementById('total-cost').textContent = totalCost.toFixed(2);
         }
+
+        function resetForm() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => input.value = '0');
+            document.getElementById('total-cost').textContent = '0';
+        }
+        
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', calculateTotalCost);
+        });
+
+        calculateTotalCost(); // Initial calculation
     </script>
 </body>
 </html>
