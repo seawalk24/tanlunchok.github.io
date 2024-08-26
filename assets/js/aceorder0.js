@@ -76,13 +76,11 @@ function calculateTotalCost() {
     let totalCost = 0;
     let breakdown = {
         materialFactory: { wood: 0, iron: 0, steel: 0, crystone: 0, total: 0 },
-        productionBase: { weaponCrates: 0, medCrates: 0, foodCrates: 0, total: 0 },
-        craftingCenter: { idCards: 0, precisionGears: 0, total: 0 },
-        energyCenter: { integratedChips: 0, energyCores: 0, total: 0 }
+        productionBase: { weaponCrate: 0, medCrate: 0, foodCrate: 0, total: 0 },
+        craftingCenter: { idCard: 0, precisionGear: 0, total: 0 },
+        energyCenter: { integratedChip: 0, energyCore: 0, total: 0 }
     };
     let overallTimeNeeded = 0;
-    let maxFactory = '';
-    let maxTime = 0;
     let suggestion = '';
 
     for (let key in costs) {
@@ -159,61 +157,62 @@ function calculateTotalCost() {
     updateTimeBreakdown(breakdown, overallTimeNeeded);
 }
 
+
 function updateTimeBreakdown(breakdown, overallTimeNeeded) {
-    const formatAndHighlight = (totalTime, highlight) => {
+    // Helper function to format and highlight the time
+    const formatAndHighlight = (totalTime, isMaxTime) => {
         const formattedTime = formatTime(totalTime);
-        return highlight ? `<strong style="color: red;">${formattedTime}</strong>` : formattedTime;
+        return isMaxTime ? `<strong style="color: red;">${formattedTime}</strong>` : formattedTime;
     };
 
-    const materialFactoryTime = breakdown.materialFactory.total;
-    const productionBaseTime = breakdown.productionBase.total;
-    const craftingCenterTime = breakdown.craftingCenter.total;
-    const energyCenterTime = breakdown.energyCenter.total;
+    // Helper function to create HTML content for each factory
+    const createBreakdownHTML = (factoryName, breakdownObj, isMaxTime) => {
+        let content = `<div class="factory-breakdown">
+            <div class="factory-total">${factoryName}: ${formatAndHighlight(breakdownObj.total, isMaxTime)}</div>
+            <ul class="material-list">`;
 
-    let materialFactoryContent = materialFactoryTime > 0 ? `
-        <strong>Material Factory:</strong>
-        <ul>
-            ${breakdown.materialFactory.wood > 0 ? `<li>Wood: ${formatAndHighlight(breakdown.materialFactory.wood, materialFactoryTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.materialFactory.iron > 0 ? `<li>Iron: ${formatAndHighlight(breakdown.materialFactory.iron, materialFactoryTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.materialFactory.steel > 0 ? `<li>Steel: ${formatAndHighlight(breakdown.materialFactory.steel, materialFactoryTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.materialFactory.crystone > 0 ? `<li>Crystone: ${formatAndHighlight(breakdown.materialFactory.crystone, materialFactoryTime === overallTimeNeeded)}</li>` : ''}
-            <li><strong>Total: ${formatAndHighlight(materialFactoryTime, materialFactoryTime === overallTimeNeeded)}</strong></li>
-        </ul>
-    ` : '';
+        for (let material in breakdownObj) {
+            if (material !== 'total' && breakdownObj[material] > 0) {
+                content += `<li class="material-time">${material}: ${formatTime(breakdownObj[material])}</li>`;
+            }
+        }
 
-    let productionBaseContent = productionBaseTime > 0 ? `
-        <strong>Production Base:</strong>
-        <ul>
-            ${breakdown.productionBase.weaponCrates > 0 ? `<li>Weapon Crates: ${formatAndHighlight(breakdown.productionBase.weaponCrates, productionBaseTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.productionBase.medCrates > 0 ? `<li>Med Crates: ${formatAndHighlight(breakdown.productionBase.medCrates, productionBaseTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.productionBase.foodCrates > 0 ? `<li>Food Crates: ${formatAndHighlight(breakdown.productionBase.foodCrates, productionBaseTime === overallTimeNeeded)}</li>` : ''}
-            <li><strong>Total: ${formatAndHighlight(productionBaseTime, productionBaseTime === overallTimeNeeded)}</strong></li>
-        </ul>
-    ` : '';
+        content += '</ul></div>';
+        return content;
+    };
 
-    let craftingCenterContent = craftingCenterTime > 0 ? `
-        <strong>Crafting Center:</strong>
-        <ul>
-            ${breakdown.craftingCenter.idCards > 0 ? `<li>ID Cards: ${formatAndHighlight(breakdown.craftingCenter.idCards, craftingCenterTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.craftingCenter.precisionGears > 0 ? `<li>Precision Gears: ${formatAndHighlight(breakdown.craftingCenter.precisionGears, craftingCenterTime === overallTimeNeeded)}</li>` : ''}
-            <li><strong>Total: ${formatAndHighlight(craftingCenterTime, craftingCenterTime === overallTimeNeeded)}</strong></li>
-        </ul>
-    ` : '';
+    // Create the HTML content for each factory
+    const materialFactoryContent = createBreakdownHTML(
+        'Material Factory', 
+        breakdown.materialFactory, 
+        breakdown.materialFactory.total === overallTimeNeeded
+    );
 
-    let energyCenterContent = energyCenterTime > 0 ? `
-        <strong>Energy Center:</strong>
-        <ul>
-            ${breakdown.energyCenter.integratedChips > 0 ? `<li>Integrated Chips: ${formatAndHighlight(breakdown.energyCenter.integratedChips, energyCenterTime === overallTimeNeeded)}</li>` : ''}
-            ${breakdown.energyCenter.energyCores > 0 ? `<li>Energy Cores: ${formatAndHighlight(breakdown.energyCenter.energyCores, energyCenterTime === overallTimeNeeded)}</li>` : ''}
-            <li><strong>Total: ${formatAndHighlight(energyCenterTime, energyCenterTime === overallTimeNeeded)}</strong></li>
-        </ul>
-    ` : '';
+    const productionBaseContent = createBreakdownHTML(
+        'Production Base', 
+        breakdown.productionBase, 
+        breakdown.productionBase.total === overallTimeNeeded
+    );
 
+    const craftingCenterContent = createBreakdownHTML(
+        'Crafting Center', 
+        breakdown.craftingCenter, 
+        breakdown.craftingCenter.total === overallTimeNeeded
+    );
+
+    const energyCenterContent = createBreakdownHTML(
+        'Energy Center', 
+        breakdown.energyCenter, 
+        breakdown.energyCenter.total === overallTimeNeeded
+    );
+
+    // Insert the generated content into the respective HTML elements
     document.getElementById('material-factory-breakdown').innerHTML = materialFactoryContent;
     document.getElementById('production-base-breakdown').innerHTML = productionBaseContent;
     document.getElementById('crafting-center-breakdown').innerHTML = craftingCenterContent;
     document.getElementById('energy-center-breakdown').innerHTML = energyCenterContent;
 }
+
 
 function resetForm() {
     document.querySelectorAll('input[type="number"]').forEach(input => input.value = '0');

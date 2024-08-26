@@ -122,21 +122,24 @@ h1 {
     text-align: center;
 }
 
-#time-breakdown {
-    margin-top: 20px;
+.factory-breakdown {
+    margin-bottom: 15px;
 }
 
-#time-breakdown ul {
-    list-style: none;
-    padding: 0;
-    font-size: 16px;
+.factory-total {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-#time-breakdown li {
-    margin: 5px 0;
+.material-list {
+    list-style-type: none;
+    padding-left: 15px;
 }
 
-#time-breakdown strong {
-    display: block;
-    margin-top: 10px;
+.material-time {
+    margin-bottom: 3px;
+}
+
+.material-time strong {
+    color: red;
 }
