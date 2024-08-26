@@ -122,12 +122,21 @@ h1 {
     text-align: center;
 }
 
+#time-breakdown{
+    background-color: #e9e9e9;
+    padding: 5% 5% 2% 5%;
+    border-radius: 10px;
+}
 .factory-breakdown {
     margin-bottom: 15px;
 }
 
 .factory-total {
     font-weight: bold;
+    font-size: smaller;
+    width: 100%;
+
+    margin: auto;
     margin-bottom: 5px;
 }
 
