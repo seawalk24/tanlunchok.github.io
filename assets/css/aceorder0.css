@@ -138,8 +138,24 @@ h1 {
 
 .material-time {
     margin-bottom: 3px;
+    font-size: smaller;
+    color: #898989;
 }
 
 .material-time strong {
     color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+.material-icon {
+    width: 24px;  /* Adjust size as needed */
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.timeNeeded{
+    font-size:smaller;
 }

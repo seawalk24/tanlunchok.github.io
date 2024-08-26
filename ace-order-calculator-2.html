@@ -4,63 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ace Order Calculator</title>
-    <link rel="stylesheet" href="assets\css\aceorder.css">
+    <link rel="stylesheet" href="assets\css\aceorder0.css">
 </head>
 <body>
     <div class="container">
         <h1>Ace Order Calculator</h1>
         <div class="form-group">
-            <label for="material-factory-stars">Material Factory</label>
-            <div class="star-rating" data-target="material-factory-stars">
-                <input type="radio" id="mf-star-1" name="material-factory-stars" value="1">
-                <label for="mf-star-1">&#9733;</label>
-                <input type="radio" id="mf-star-2" name="material-factory-stars" value="2">
+            <label for="material-factory-stars">Material Factory:</label>
+            <div class="star-rating" data-target="materialFactoryStars">
+                <input type="radio" id="mf-star-1" name="materialFactoryStars" value="1">
+                <label for="mf-star-1">&#9733;</label> <!-- Unicode star character -->
+                <input type="radio" id="mf-star-2" name="materialFactoryStars" value="2">
                 <label for="mf-star-2">&#9733;</label>
-                <input type="radio" id="mf-star-3" name="material-factory-stars" value="3">
+                <input type="radio" id="mf-star-3" name="materialFactoryStars" value="3">
                 <label for="mf-star-3">&#9733;</label>
-                <input type="radio" id="mf-star-4" name="material-factory-stars" value="4" checked>
+                <input type="radio" id="mf-star-4" name="materialFactoryStars" value="4" checked>
                 <label for="mf-star-4">&#9733;</label>
             </div>
         </div>
         
         <div class="form-group">
-            <label for="production-base-stars">Production Base</label>
-            <div class="star-rating" data-target="production-base-stars">
-                <input type="radio" id="pb-star-1" name="production-base-stars" value="1">
+            <label for="production-base-stars">Production Base:</label>
+            <div class="star-rating" data-target="productionBaseStars">
+                <input type="radio" id="pb-star-1" name="productionBaseStars" value="1">
                 <label for="pb-star-1">&#9733;</label>
-                <input type="radio" id="pb-star-2" name="production-base-stars" value="2">
+                <input type="radio" id="pb-star-2" name="productionBaseStars" value="2">
                 <label for="pb-star-2">&#9733;</label>
-                <input type="radio" id="pb-star-3" name="production-base-stars" value="3">
+                <input type="radio" id="pb-star-3" name="productionBaseStars" value="3">
                 <label for="pb-star-3">&#9733;</label>
-                <input type="radio" id="pb-star-4" name="production-base-stars" value="4" checked>
+                <input type="radio" id="pb-star-4" name="productionBaseStars" value="4" checked>
                 <label for="pb-star-4">&#9733;</label>
             </div>
         </div>
         
         <div class="form-group">
-            <label for="crafting-center-stars">Crafting Center</label>
-            <div class="star-rating" data-target="crafting-center-stars">
-                <input type="radio" id="cc-star-1" name="crafting-center-stars" value="1">
+            <label for="crafting-center-stars">Crafting Center:</label>
+            <div class="star-rating" data-target="craftingCenterStars">
+                <input type="radio" id="cc-star-1" name="craftingCenterStars" value="1">
                 <label for="cc-star-1">&#9733;</label>
-                <input type="radio" id="cc-star-2" name="crafting-center-stars" value="2">
+                <input type="radio" id="cc-star-2" name="craftingCenterStars" value="2">
                 <label for="cc-star-2">&#9733;</label>
-                <input type="radio" id="cc-star-3" name="crafting-center-stars" value="3">
+                <input type="radio" id="cc-star-3" name="craftingCenterStars" value="3">
                 <label for="cc-star-3">&#9733;</label>
-                <input type="radio" id="cc-star-4" name="crafting-center-stars" value="4" checked>
+                <input type="radio" id="cc-star-4" name="craftingCenterStars" value="4" checked>
                 <label for="cc-star-4">&#9733;</label>
             </div>
         </div>
         
         <div class="form-group">
-            <label for="energy-center-stars">Energy Center</label>
-            <div class="star-rating" data-target="energy-center-stars">
-                <input type="radio" id="ec-star-1" name="energy-center-stars" value="1">
+            <label for="energy-center-stars">Energy Center:</label>
+            <div class="star-rating" data-target="energyCenterStars">
+                <input type="radio" id="ec-star-1" name="energyCenterStars" value="1">
                 <label for="ec-star-1">&#9733;</label>
-                <input type="radio" id="ec-star-2" name="energy-center-stars" value="2">
+                <input type="radio" id="ec-star-2" name="energyCenterStars" value="2">
                 <label for="ec-star-2">&#9733;</label>
-                <input type="radio" id="ec-star-3" name="energy-center-stars" value="3">
+                <input type="radio" id="ec-star-3" name="energyCenterStars" value="3">
                 <label for="ec-star-3">&#9733;</label>
-                <input type="radio" id="ec-star-4" name="energy-center-stars" value="4" checked>
+                <input type="radio" id="ec-star-4" name="energyCenterStars" value="4" checked>
                 <label for="ec-star-4">&#9733;</label>
             </div>
         </div>
@@ -75,70 +75,70 @@
         </div>
         <div class="form-group">
             <label for="iron">
-                <img src="images\aceCal\iron.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/iron.png" alt=" Icon" class="icon">
                 Iron
             </label>
             <input type="number" id="iron" value="0">
         </div>
         <div class="form-group">
             <label for="steel">
-                <img src="images\aceCal\steel.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/steel.png" alt=" Icon" class="icon">
                 Steel
             </label>
             <input type="number" id="steel" value="0">
         </div>
         <div class="form-group">
             <label for="crystone">
-                <img src="images\aceCal\crys.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/crys.png" alt=" Icon" class="icon">
                 Crystone
             </label>
             <input type="number" id="crystone" value="0">
         </div>
         <div class="form-group">
             <label for="weapon-crate">
-                <img src="images\aceCal\weap.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/weap.png" alt=" Icon" class="icon">
                 Weapon Crate
             </label>
             <input type="number" id="weapon-crate" value="0">
         </div>
         <div class="form-group">
             <label for="med-crate">
-                <img src="images\aceCal\med.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/med.png" alt=" Icon" class="icon">
                 Med Crate
             </label>
             <input type="number" id="med-crate" value="0">
         </div>
         <div class="form-group">
             <label for="food-crate">
-                <img src="images\aceCal\food.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/food.png" alt=" Icon" class="icon">
                 Food Crate
             </label>
             <input type="number" id="food-crate" value="0">
         </div>
         <div class="form-group">
             <label for="id-card">
-                <img src="images\aceCal\id.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/id.png" alt=" Icon" class="icon">
                 ID Card
             </label>
             <input type="number" id="id-card" value="0">
         </div>
         <div class="form-group">
             <label for="precision-gear">
-                <img src="images\aceCal\gear.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/gear.png" alt=" Icon" class="icon">
                 Precision Gear
             </label>
             <input type="number" id="precision-gear" value="0">
         </div>
         <div class="form-group">
             <label for="integrated-chip">
-                <img src="images\aceCal\chip.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/chip.png" alt=" Icon" class="icon">
                 Integrated Chip
             </label>
             <input type="number" id="integrated-chip" value="0">
         </div>
         <div class="form-group">
             <label for="energy-core">
-                <img src="images\aceCal\core.png" alt=" Icon" class="icon">
+                <img src="images/aceCal/core.png" alt=" Icon" class="icon">
                 Energy Core
             </label>
             <input type="number" id="energy-core" value="0">
@@ -159,6 +159,6 @@
             </div>
         </div>
     </div>
-    <script src="assets\js\aceorder.js"></script>
+    <script src="assets\js\aceorder0.js"></script>
 </body>
 </html>

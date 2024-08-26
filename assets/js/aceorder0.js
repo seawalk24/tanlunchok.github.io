@@ -159,13 +159,25 @@ function calculateTotalCost() {
 
 
 function updateTimeBreakdown(breakdown, overallTimeNeeded) {
-    // Helper function to format and highlight the time
     const formatAndHighlight = (totalTime, isMaxTime) => {
         const formattedTime = formatTime(totalTime);
         return isMaxTime ? `<strong style="color: red;">${formattedTime}</strong>` : formattedTime;
     };
 
-    // Helper function to create HTML content for each factory
+    const materialIcons = {
+        wood: '<img src="images/aceCal/wood.png" alt="Wood Icon" class="icon">',
+        iron: '<img src="images/aceCal/iron.png" alt=" Icon" class="icon">',
+        steel: '<img src="images/aceCal/steel.png" alt=" Icon" class="icon">',
+        crystone: '<img src="images/aceCal/crys.png" alt=" Icon" class="icon">',
+        weaponCrate: '<img src="images/aceCal/weap.png" alt=" Icon" class="icon">',
+        medCrate: '<img src="images/aceCal/med.png" alt=" Icon" class="icon">',
+        foodCrate: '<img src="images/aceCal/food.png" alt=" Icon" class="icon">',
+        idCard: '<img src="images/aceCal/id.png" alt=" Icon" class="icon">',
+        precisionGear: '<img src="images/aceCal/gear.png" alt=" Icon" class="icon">',
+        integratedChip: '<img src="images/aceCal/chip.png" alt=" Icon" class="icon">',
+        energyCore: '<img src="images/aceCal/core.png" alt=" Icon" class="icon">'
+    };
+
     const createBreakdownHTML = (factoryName, breakdownObj, isMaxTime) => {
         let content = `<div class="factory-breakdown">
             <div class="factory-total">${factoryName}: ${formatAndHighlight(breakdownObj.total, isMaxTime)}</div>
@@ -173,7 +185,7 @@ function updateTimeBreakdown(breakdown, overallTimeNeeded) {
 
         for (let material in breakdownObj) {
             if (material !== 'total' && breakdownObj[material] > 0) {
-                content += `<li class="material-time">${material}: ${formatTime(breakdownObj[material])}</li>`;
+                content += `<li class="material-time">${materialIcons[material]}<span class="hidden">${material}: </span><span class="timeNeeded">${formatTime(breakdownObj[material])}</span></li>`;
             }
         }
 
@@ -181,37 +193,36 @@ function updateTimeBreakdown(breakdown, overallTimeNeeded) {
         return content;
     };
 
-    // Create the HTML content for each factory
     const materialFactoryContent = createBreakdownHTML(
-        'Material Factory', 
-        breakdown.materialFactory, 
+        'Material Factory',
+        breakdown.materialFactory,
         breakdown.materialFactory.total === overallTimeNeeded
     );
 
     const productionBaseContent = createBreakdownHTML(
-        'Production Base', 
-        breakdown.productionBase, 
+        'Production Base',
+        breakdown.productionBase,
         breakdown.productionBase.total === overallTimeNeeded
     );
 
     const craftingCenterContent = createBreakdownHTML(
-        'Crafting Center', 
-        breakdown.craftingCenter, 
+        'Crafting Center',
+        breakdown.craftingCenter,
         breakdown.craftingCenter.total === overallTimeNeeded
     );
 
     const energyCenterContent = createBreakdownHTML(
-        'Energy Center', 
-        breakdown.energyCenter, 
+        'Energy Center',
+        breakdown.energyCenter,
         breakdown.energyCenter.total === overallTimeNeeded
     );
 
-    // Insert the generated content into the respective HTML elements
     document.getElementById('material-factory-breakdown').innerHTML = materialFactoryContent;
     document.getElementById('production-base-breakdown').innerHTML = productionBaseContent;
     document.getElementById('crafting-center-breakdown').innerHTML = craftingCenterContent;
     document.getElementById('energy-center-breakdown').innerHTML = energyCenterContent;
 }
+
 
 
 function resetForm() {
