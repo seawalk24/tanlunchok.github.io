@@ -82,6 +82,7 @@ function calculateTotalCost() {
     };
     let overallTimeNeeded = 0;
     let suggestion = '';
+    const suggestionFlags = {};
 
     for (let key in costs) {
         const costPerUnit = costs[key];
@@ -97,7 +98,10 @@ function calculateTotalCost() {
             case 'steel':
             case 'crystone':
                 timeForMaterial = buildingTimes.materialFactory[starLevels.materialFactory][['wood', 'iron', 'steel', 'crystone'].indexOf(key)];
-                if (timeForMaterial === 0 && quantity > 0) suggestion += 'Upgrade Material Factory. ';
+                if (timeForMaterial === 0 && quantity > 0 && !suggestionFlags.materialFactory) {
+                    suggestion += 'Upgrade Material Factory. ';
+                    suggestionFlags.materialFactory = true;
+                }
                 if (timeForMaterial > 0) {
                     breakdown.materialFactory[key] += timeForMaterial * quantity;
                     breakdown.materialFactory.total += timeForMaterial * quantity;
@@ -107,7 +111,10 @@ function calculateTotalCost() {
             case 'medCrate':
             case 'foodCrate':
                 timeForMaterial = buildingTimes.productionBase[starLevels.productionBase][['weaponCrate', 'medCrate', 'foodCrate'].indexOf(key)];
-                if (timeForMaterial === 0 && quantity > 0) suggestion += 'Upgrade Production Base. ';
+                if (timeForMaterial === 0 && quantity > 0 && !suggestionFlags.productionBase) {
+                    suggestion += 'Upgrade Production Base. ';
+                    suggestionFlags.productionBase = true;
+                }
                 if (timeForMaterial > 0) {
                     breakdown.productionBase[key] += timeForMaterial * quantity;
                     breakdown.productionBase.total += timeForMaterial * quantity;
@@ -116,7 +123,10 @@ function calculateTotalCost() {
             case 'idCard':
             case 'precisionGear':
                 timeForMaterial = buildingTimes.craftingCenter[starLevels.craftingCenter][['idCard', 'precisionGear'].indexOf(key)];
-                if (timeForMaterial === 0 && quantity > 0) suggestion += 'Upgrade Crafting Center. ';
+                if (timeForMaterial === 0 && quantity > 0 && !suggestionFlags.craftingCenter) {
+                    suggestion += 'Upgrade Crafting Center. ';
+                    suggestionFlags.craftingCenter = true;
+                }
                 if (timeForMaterial > 0) {
                     breakdown.craftingCenter[key] += timeForMaterial * quantity;
                     breakdown.craftingCenter.total += timeForMaterial * quantity;
@@ -125,7 +135,10 @@ function calculateTotalCost() {
             case 'integratedChip':
             case 'energyCore':
                 timeForMaterial = buildingTimes.energyCenter[starLevels.energyCenter][['integratedChip', 'energyCore'].indexOf(key)];
-                if (timeForMaterial === 0 && quantity > 0) suggestion += 'Upgrade Energy Center. ';
+                if (timeForMaterial === 0 && quantity > 0 && !suggestionFlags.energyCenter) {
+                    suggestion += 'Upgrade Energy Center. ';
+                    suggestionFlags.energyCenter = true;
+                }
                 if (timeForMaterial > 0) {
                     breakdown.energyCenter[key] += timeForMaterial * quantity;
                     breakdown.energyCenter.total += timeForMaterial * quantity;
@@ -168,6 +181,7 @@ function calculateTotalCost() {
         timeBreakdownContainer.style.display = 'none';
     }
 }
+
 
 
 const factoryNames = {
