@@ -142,8 +142,11 @@ function calculateTotalCost() {
         breakdown.energyCenter.total
     );
 
+    // Round up the total cost
+    const roundedTotalCost = Math.ceil(totalCost);
+
     // Update HTML elements
-    document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+    document.getElementById('total-cost').textContent = roundedTotalCost;
 
     if (suggestion) {
         document.getElementById('total-time').textContent = 'Upgrade Needed';
@@ -154,33 +157,66 @@ function calculateTotalCost() {
         document.getElementById('suggestion').textContent = '';
     }
 
+    // Update the breakdown and show the container
     updateTimeBreakdown(breakdown, overallTimeNeeded);
+
+    // Show the time breakdown container if there is any content
+    const timeBreakdownContainer = document.getElementById('time-breakdown');
+    if (document.querySelector('#time-breakdown .factory-breakdown')) {
+        timeBreakdownContainer.style.display = 'block';
+    } else {
+        timeBreakdownContainer.style.display = 'none';
+    }
 }
 
+
+const factoryNames = {
+    'material-factory-breakdown': 'Material Factory',
+    'production-base-breakdown': 'Production Base',
+    'crafting-center-breakdown': 'Crafting Center',
+    'energy-center-breakdown': 'Energy Center'
+};
+
+function createBreakdownHTML(factoryId, breakdownObj, isMaxTime) {
+    const factoryName = factoryNames[factoryId] || factoryId; // Use the display name from the mapping or default to the ID
+    let content = `<div class="factory-breakdown">
+        <div class="factory-total">${factoryName}<span class="factory-total-time">${formatAndHighlight(breakdownObj.total, isMaxTime)}</span></div>
+        <ul class="material-list">`;
+
+    for (let material in breakdownObj) {
+        if (material !== 'total' && breakdownObj[material] > 0) {
+            content += `<li class="material-time">${materialIcons[material]}<span class="hidden">${material}: </span><span class="timeNeeded">${formatTime(breakdownObj[material])}</span></li>`;
+        }
+    }
+
+    content += '</ul></div>';
+    return content;
+}
 
 function updateTimeBreakdown(breakdown, overallTimeNeeded) {
     const formatAndHighlight = (totalTime, isMaxTime) => {
         const formattedTime = formatTime(totalTime);
-        return isMaxTime ? `<strong style="color: red;">${formattedTime}</strong>` : formattedTime;
+        return isMaxTime ? `<strong class="redText">${formattedTime}</strong>` : formattedTime;
     };
 
     const materialIcons = {
         wood: '<img src="images/aceCal/wood.png" alt="Wood Icon" class="icon">',
-        iron: '<img src="images/aceCal/iron.png" alt=" Icon" class="icon">',
-        steel: '<img src="images/aceCal/steel.png" alt=" Icon" class="icon">',
-        crystone: '<img src="images/aceCal/crys.png" alt=" Icon" class="icon">',
-        weaponCrate: '<img src="images/aceCal/weap.png" alt=" Icon" class="icon">',
-        medCrate: '<img src="images/aceCal/med.png" alt=" Icon" class="icon">',
-        foodCrate: '<img src="images/aceCal/food.png" alt=" Icon" class="icon">',
-        idCard: '<img src="images/aceCal/id.png" alt=" Icon" class="icon">',
-        precisionGear: '<img src="images/aceCal/gear.png" alt=" Icon" class="icon">',
-        integratedChip: '<img src="images/aceCal/chip.png" alt=" Icon" class="icon">',
-        energyCore: '<img src="images/aceCal/core.png" alt=" Icon" class="icon">'
+        iron: '<img src="images/aceCal/iron.png" alt="Iron Icon" class="icon">',
+        steel: '<img src="images/aceCal/steel.png" alt="Steel Icon" class="icon">',
+        crystone: '<img src="images/aceCal/crys.png" alt="Crystone Icon" class="icon">',
+        weaponCrate: '<img src="images/aceCal/weap.png" alt="Weapon Crate Icon" class="icon">',
+        medCrate: '<img src="images/aceCal/med.png" alt="Med Crate Icon" class="icon">',
+        foodCrate: '<img src="images/aceCal/food.png" alt="Food Crate Icon" class="icon">',
+        idCard: '<img src="images/aceCal/id.png" alt="ID Card Icon" class="icon">',
+        precisionGear: '<img src="images/aceCal/gear.png" alt="Precision Gear Icon" class="icon">',
+        integratedChip: '<img src="images/aceCal/chip.png" alt="Integrated Chip Icon" class="icon">',
+        energyCore: '<img src="images/aceCal/core.png" alt="Energy Core Icon" class="icon">'
     };
 
-    const createBreakdownHTML = (factoryName, breakdownObj, isMaxTime) => {
+    const createBreakdownHTML = (factoryId, breakdownObj, isMaxTime) => {
+        const factoryName = factoryNames[factoryId] || factoryId; // Use the display name from the mapping or default to the ID
         let content = `<div class="factory-breakdown">
-            <div class="factory-total">${factoryName}: ${formatAndHighlight(breakdownObj.total, isMaxTime)}</div>
+            <div class="factory-total">${factoryName}<span class="factory-total-time">${formatAndHighlight(breakdownObj.total, isMaxTime)}</span></div>
             <ul class="material-list">`;
 
         for (let material in breakdownObj) {
@@ -193,35 +229,43 @@ function updateTimeBreakdown(breakdown, overallTimeNeeded) {
         return content;
     };
 
-    const materialFactoryContent = createBreakdownHTML(
-        'Material Factory',
+    // Update content and visibility
+    const updateContainer = (containerId, breakdownObj, isMaxTime) => {
+        const container = document.getElementById(containerId);
+        const content = createBreakdownHTML(containerId, breakdownObj, isMaxTime);
+        if (content.includes('<li class="material-time"')) {
+            container.innerHTML = content;
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    };
+
+    updateContainer(
+        'material-factory-breakdown',
         breakdown.materialFactory,
         breakdown.materialFactory.total === overallTimeNeeded
     );
 
-    const productionBaseContent = createBreakdownHTML(
-        'Production Base',
+    updateContainer(
+        'production-base-breakdown',
         breakdown.productionBase,
         breakdown.productionBase.total === overallTimeNeeded
     );
 
-    const craftingCenterContent = createBreakdownHTML(
-        'Crafting Center',
+    updateContainer(
+        'crafting-center-breakdown',
         breakdown.craftingCenter,
         breakdown.craftingCenter.total === overallTimeNeeded
     );
 
-    const energyCenterContent = createBreakdownHTML(
-        'Energy Center',
+    updateContainer(
+        'energy-center-breakdown',
         breakdown.energyCenter,
         breakdown.energyCenter.total === overallTimeNeeded
     );
-
-    document.getElementById('material-factory-breakdown').innerHTML = materialFactoryContent;
-    document.getElementById('production-base-breakdown').innerHTML = productionBaseContent;
-    document.getElementById('crafting-center-breakdown').innerHTML = craftingCenterContent;
-    document.getElementById('energy-center-breakdown').innerHTML = energyCenterContent;
 }
+
 
 
 
@@ -241,6 +285,7 @@ function resetForm() {
         craftingCenter: { idCards: 0, precisionGears: 0, total: 0 },
         energyCenter: { integratedChips: 0, energyCores: 0, total: 0 }
     }, 0);
+    document.getElementById('time-breakdown').style.display = 'none';
 }
 
 document.querySelectorAll('input').forEach(input => {

@@ -60,12 +60,5 @@ letter-spacing: 0.1em;
     width: 100%;
     mix-blend-mode:normal;
 }
-.light-mode.dark-mode-switch{
-    margin: 1em 0 0 0;
-}
 
-.dark-mode.dark-mode-switch{
-    margin: 1em 0 0 0;
-    box-shadow: 0px 0px 10px white;
-}
  

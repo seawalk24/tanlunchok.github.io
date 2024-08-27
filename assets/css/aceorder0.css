@@ -4,9 +4,9 @@ body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
+    box-sizing: border-box; 
 }
 
 .container {
@@ -19,6 +19,12 @@ body {
     margin-top: auto;
 }
 
+@media (min-width: 768px) {
+    body {
+        padding: 1rem 0;
+    }
+}
+
 h1 {
     text-align: center;
 }
@@ -26,7 +32,8 @@ h1 {
 .form-group {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 10px;
+    padding: 5px;
+    align-items: center; 
 }
 
 .form-group label {
@@ -35,12 +42,22 @@ h1 {
     font-size: 0.8rem;
     text-align: left;
 }
+
+.building-group{
+    justify-content: space-between;
+    margin: 5% auto;
+    background-color: #f8f8f8;
+    padding: 2% 5%;
+    border-radius: 10px;
+}
 .form-group.building {
-    justify-content: space-around;
+    padding: 5px;
 }
+
 .form-group.building label {
-    width: 20%;
+
 }
+
 .form-group input {
     width: 25%;
     text-align: center;
@@ -59,6 +76,20 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    
+}
+
+#total-cost{
+    color: #22762f;
+}
+
+#total-time{
+    color: #296dcc;
+}
+
+#suggestion{
+    font-size: smaller;
+    color: #b5b5b5;
 }
 
 .resetBtn {
@@ -101,7 +132,7 @@ h1 {
 }
 
 .star-rating label {
-    font-size: 2rem;
+    font-size: 1.25rem;
     color: gold; /* Default color for stars not selected */
     cursor: pointer;
 }
@@ -129,9 +160,10 @@ h1 {
 }
 
 #time-breakdown{
-    background-color: #e9e9e9;
+    background-color: #f8f8f8;
     padding: 5% 5% 2% 5%;
     border-radius: 10px;
+    display: none;
 }
 .factory-breakdown {
     margin-bottom: 15px;
@@ -140,10 +172,15 @@ h1 {
 .factory-total {
     font-weight: bold;
     font-size: smaller;
-    width: 100%;
-
+    width: 80%;
     margin: auto;
     margin-bottom: 5px;
+
+}
+.factory-total-time{
+    font-size: medium;
+    margin-left: 8px;
+    color: #898989;
 }
 
 .material-list {
@@ -155,12 +192,19 @@ h1 {
     margin-bottom: 3px;
     font-size: smaller;
     color: #898989;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    padding: 3px;
+    text-align: left;
 }
 
 .material-time strong {
-    color: red;
+    color: #ff5100;
 }
-
+.redText{
+    color: #ff5100;
+}
 .hidden {
     display: none;
 }
@@ -173,4 +217,11 @@ h1 {
 }
 .timeNeeded{
     font-size:smaller;
+}
+
+#material-factory-breakdown,
+#production-base-breakdown,
+#crafting-center-breakdown,
+#energy-center-breakdown {
+    display: none;
 }

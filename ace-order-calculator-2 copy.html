@@ -9,62 +9,63 @@
 <body>
     <div class="container">
         <h1>Ace Order Calculator</h1>
-        <div class="form-group">
-            <label for="material-factory-stars">Material Factory:</label>
-            <div class="star-rating" data-target="materialFactoryStars">
-                <input type="radio" id="mf-star-1" name="materialFactoryStars" value="1">
-                <label for="mf-star-1">&#9733;</label> <!-- Unicode star character -->
-                <input type="radio" id="mf-star-2" name="materialFactoryStars" value="2">
-                <label for="mf-star-2">&#9733;</label>
-                <input type="radio" id="mf-star-3" name="materialFactoryStars" value="3">
-                <label for="mf-star-3">&#9733;</label>
-                <input type="radio" id="mf-star-4" name="materialFactoryStars" value="4" checked>
-                <label for="mf-star-4">&#9733;</label>
+            <div class="building-group">
+                <div class="form-group building">
+                    <label for="material-factory-stars">Material Factory</label>
+                    <div class="star-rating" data-target="materialFactoryStars">
+                        <input type="radio" id="mf-star-1" name="materialFactoryStars" value="1">
+                        <label for="mf-star-1">&#9733;</label> <!-- Unicode star character -->
+                        <input type="radio" id="mf-star-2" name="materialFactoryStars" value="2">
+                        <label for="mf-star-2">&#9733;</label>
+                        <input type="radio" id="mf-star-3" name="materialFactoryStars" value="3">
+                        <label for="mf-star-3">&#9733;</label>
+                        <input type="radio" id="mf-star-4" name="materialFactoryStars" value="4" checked>
+                        <label for="mf-star-4">&#9733;</label>
+                    </div>
+                </div>
+                
+                <div class="form-group building">
+                    <label for="production-base-stars">Production Base</label>
+                    <div class="star-rating" data-target="productionBaseStars">
+                        <input type="radio" id="pb-star-1" name="productionBaseStars" value="1">
+                        <label for="pb-star-1">&#9733;</label>
+                        <input type="radio" id="pb-star-2" name="productionBaseStars" value="2">
+                        <label for="pb-star-2">&#9733;</label>
+                        <input type="radio" id="pb-star-3" name="productionBaseStars" value="3">
+                        <label for="pb-star-3">&#9733;</label>
+                        <input type="radio" id="pb-star-4" name="productionBaseStars" value="4" checked>
+                        <label for="pb-star-4">&#9733;</label>
+                    </div>
+                </div>
+                
+                <div class="form-group building">
+                    <label for="crafting-center-stars">Crafting Center</label>
+                    <div class="star-rating" data-target="craftingCenterStars">
+                        <input type="radio" id="cc-star-1" name="craftingCenterStars" value="1">
+                        <label for="cc-star-1">&#9733;</label>
+                        <input type="radio" id="cc-star-2" name="craftingCenterStars" value="2">
+                        <label for="cc-star-2">&#9733;</label>
+                        <input type="radio" id="cc-star-3" name="craftingCenterStars" value="3">
+                        <label for="cc-star-3">&#9733;</label>
+                        <input type="radio" id="cc-star-4" name="craftingCenterStars" value="4" checked>
+                        <label for="cc-star-4">&#9733;</label>
+                    </div>
+                </div>
+                
+                <div class="form-group building">
+                    <label for="energy-center-stars">Energy Center</label>
+                    <div class="star-rating" data-target="energyCenterStars">
+                        <input type="radio" id="ec-star-1" name="energyCenterStars" value="1">
+                        <label for="ec-star-1">&#9733;</label>
+                        <input type="radio" id="ec-star-2" name="energyCenterStars" value="2">
+                        <label for="ec-star-2">&#9733;</label>
+                        <input type="radio" id="ec-star-3" name="energyCenterStars" value="3">
+                        <label for="ec-star-3">&#9733;</label>
+                        <input type="radio" id="ec-star-4" name="energyCenterStars" value="4" checked>
+                        <label for="ec-star-4">&#9733;</label>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="production-base-stars">Production Base:</label>
-            <div class="star-rating" data-target="productionBaseStars">
-                <input type="radio" id="pb-star-1" name="productionBaseStars" value="1">
-                <label for="pb-star-1">&#9733;</label>
-                <input type="radio" id="pb-star-2" name="productionBaseStars" value="2">
-                <label for="pb-star-2">&#9733;</label>
-                <input type="radio" id="pb-star-3" name="productionBaseStars" value="3">
-                <label for="pb-star-3">&#9733;</label>
-                <input type="radio" id="pb-star-4" name="productionBaseStars" value="4" checked>
-                <label for="pb-star-4">&#9733;</label>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="crafting-center-stars">Crafting Center:</label>
-            <div class="star-rating" data-target="craftingCenterStars">
-                <input type="radio" id="cc-star-1" name="craftingCenterStars" value="1">
-                <label for="cc-star-1">&#9733;</label>
-                <input type="radio" id="cc-star-2" name="craftingCenterStars" value="2">
-                <label for="cc-star-2">&#9733;</label>
-                <input type="radio" id="cc-star-3" name="craftingCenterStars" value="3">
-                <label for="cc-star-3">&#9733;</label>
-                <input type="radio" id="cc-star-4" name="craftingCenterStars" value="4" checked>
-                <label for="cc-star-4">&#9733;</label>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="energy-center-stars">Energy Center:</label>
-            <div class="star-rating" data-target="energyCenterStars">
-                <input type="radio" id="ec-star-1" name="energyCenterStars" value="1">
-                <label for="ec-star-1">&#9733;</label>
-                <input type="radio" id="ec-star-2" name="energyCenterStars" value="2">
-                <label for="ec-star-2">&#9733;</label>
-                <input type="radio" id="ec-star-3" name="energyCenterStars" value="3">
-                <label for="ec-star-3">&#9733;</label>
-                <input type="radio" id="ec-star-4" name="energyCenterStars" value="4" checked>
-                <label for="ec-star-4">&#9733;</label>
-            </div>
-        </div>
-
         <!-- Input Fields for Materials -->
         <div class="form-group">
             <label for="wood">
