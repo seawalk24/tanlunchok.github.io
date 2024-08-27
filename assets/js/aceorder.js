@@ -284,7 +284,7 @@ function updateTimeBreakdown(breakdown, overallTimeNeeded) {
 
 
 function resetForm() {
-    document.querySelectorAll('input[type="number"]').forEach(input => input.value = '0');
+    document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
     document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
     document.querySelector('input[name="materialFactoryStars"][value="4"]').checked = true;
     document.querySelector('input[name="productionBaseStars"][value="4"]').checked = true;
